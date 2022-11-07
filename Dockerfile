@@ -1,6 +1,7 @@
 FROM node:14.17.0-buster
 
 RUN apt-get update && apt-get install -y ssh
+RUN apt install sudo
 RUN mkdir /var/run/sshd ;\
     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd ;\
     sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
